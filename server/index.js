@@ -9,7 +9,7 @@ const app = express();
 app.use(parser.json());
 app.use(parser.urlencoded({extended:true}))
 
-app.use(express.static(path.join(__dirname, '../client/dist/index.html' )))
+app.use(express.static(path.join(__dirname, '../client/dist')))
 app.use('/', router)
 
 app.listen(port, () => console.log(`connected to port ${port}`))
