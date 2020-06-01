@@ -7,7 +7,7 @@ router
 .get(getSpecials)
 
 router
-.route('/cheeses')
+.route('/cheeses/:id')
 .get (getCheeses)
 
 module.exports = router

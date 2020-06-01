@@ -1,7 +1,7 @@
 const { Cheeses, Specials } = require ('../db/index.js')
 
 const getCheeses = (req, res) => {
-  Cheeses.find()
+  Cheeses.find({id: req.params.id})
   .then(cheeses => {
     res.json(cheeses)
   }) 
@@ -11,7 +11,6 @@ const getCheeses = (req, res) => {
 }
 
 const getSpecials = (req, res) => {
-  console.log (req.params)
   Specials.find({zip: req.params.zip})
   .then(specials => {
     res.json(specials)
