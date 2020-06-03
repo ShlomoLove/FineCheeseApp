@@ -3,7 +3,7 @@ const path = require ('path')
 const parser = require ('body-parser')
 const router = require('./router.js')
 
-const port = 3003;
+const port = 3002;
 const app = express();
 
 app.use(parser.json());
