@@ -84,7 +84,31 @@ class CheeseStore extends Component {
     let newPage = page
     newPage += 1
     if (myCart.length > 0 ) {
-      this.setState({ page: newPage })
+      let cartObject = {}
+      for (let cheese of myCart) {
+        if (!cartObject[cheese.id]) {
+          cheese.quantity = 1
+          cartObject[cheese.id] = cheese
+        } else {
+          cartObject[cheese.id].quantity += 1;
+        }
+      }
+      let checkoutCart = []
+      let cartTotal = 0
+      for (let key in cartObject) {
+        let discount = cartObject[key].discount
+        let price =  cartObject[key].price
+        let quantity = cartObject[key].quantity
+        let amountOff = discount ? (price/100)*discount : 0
+        let newPrice = Number(price - amountOff)
+        let total = Number(newPrice * quantity)
+        cartTotal += total
+        cartObject[key].total = total.toFixed(2)
+        
+        checkoutCart.push(cartObject[key])
+      }
+      cartTotal = cartTotal.toFixed(2)
+      this.setState({ page: newPage, checkoutCart, cartTotal })
     }
   }
 
@@ -175,7 +199,9 @@ class CheeseStore extends Component {
       zipInput, 
       mainDisplayOptions,
       cheeseInput,
-      myCart
+      myCart,
+      checkoutCart,
+      cartTotal
     } = this.state
     console.log (this.state, 'state')
     return (
@@ -203,7 +229,10 @@ class CheeseStore extends Component {
             />
           )}
           {page === 3 && (
-            <CheckOut/>
+            <CheckOut 
+              checkoutCart={checkoutCart}
+              cartTotal={cartTotal}
+            />
           )}
         </OuterContainer>
       </>
