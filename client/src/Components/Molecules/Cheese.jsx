@@ -30,7 +30,7 @@ const PriceSpan = styled.span`
 `
 
 const Cheese = props => {
-  const { inStock, name, id, price, discount, country, cart} = props
+  const { inStock, name, id, price, discount, country, handleCartUpdate} = props
   
   const findPrice = (price, disc) => {
     const amountOff = (price/100)*disc
@@ -50,14 +50,17 @@ const Cheese = props => {
           <InstructionText size='18.75px' color='#EE8C1D' medSize='15px' smSize='3.2vw'><PriceSpan>${price}</PriceSpan></InstructionText>
         )}
         {discount !== undefined && (
-          <InstructionText size='18.75px' color='#EE8C1D' medSize='15px' smSize='3.2vw'>SPECIAL: <PriceSpan>${findPrice(price, discount)}</PriceSpan> (Normal Price: <PriceSpan>${price}</PriceSpan>)</InstructionText>
+          <InstructionText size='18.75px' color='#EE8C1D' medSize='15px' smSize='3.2vw'>SPECIAL: <PriceSpan>${findPrice(price, discount)}</PriceSpan> (Normally: <PriceSpan>${price}</PriceSpan>)</InstructionText>
         )}
         <form>
-          <StyledButton 
+          <StyledButton
+            background={'#EE8C1D'}
+            hover={'#FACA66'}
+            color={'211B1B'}
             margin={'10px'} 
             type='button' 
             value='Add to Cart' 
-            onClick={() => cart()}
+            onClick={() => handleCartUpdate(thisCheese)}
           />
         </form>
       </CheeseContainer>

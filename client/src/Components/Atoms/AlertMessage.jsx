@@ -24,10 +24,17 @@ const AlertMessage = props => {
       </StyledAlert> 
       : null
     }
-      {alertMessage === 'errorResponse' ?
+    {alertMessage === 'errorResponse' ?
       <StyledAlert color={'#EE8C1D'}>
         <FontAwesomeIcon icon={faExclamationTriangle}/>
         Frank's Fine Cheeses is not in your area
+      </StyledAlert> 
+      : null
+    }
+    {alertMessage === 'noCheeses' ?
+      <StyledAlert color={'#211B1B'}>
+        <FontAwesomeIcon icon={faExclamationTriangle}/>
+        No Cheeses Matched Your Search
       </StyledAlert> 
       : null
     }

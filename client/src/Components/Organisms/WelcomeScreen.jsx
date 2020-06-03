@@ -17,7 +17,7 @@ const WelcomeScreen = (props) => {
   const { handleInput, handleZipButtonClick, alertMessage, zipInput } = props
   return (
     <>
-      <MainCheeseStoreContainer>
+      <MainCheeseStoreContainer background={'#BFBFBF'}>
         <IntroContainer/>
         {alertMessage !== '' ? 
           <AlertMessage alertMessage={alertMessage}/> : null
@@ -31,7 +31,10 @@ const WelcomeScreen = (props) => {
             onChange={handleInput}
             type="text"
           />
-          <StyledButton 
+          <StyledButton
+            background={'#EE8C1D'}
+            hover={'#FACA66'} 
+            color={'211B1B'}
             margin={'20px'} 
             type='button' 
             value='ENTER ZIP' 

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import InstructionText from '../Atoms/InstructionText'
 import StyledInput from '../Atoms/StyledInput'
+import AlertMessage from '../Atoms/AlertMessage'
 
 const SearchContainer = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const InputContainer = styled.div`
 `
 
 const SearchComponent = props => {
-  const { handleInput, cheeseInput } = props
+  const { handleInput, cheeseInput, alertMessage } = props
   // const searchValue = cheeseInput !== undefined ? cheeseInput : ''
   return (
     <>
@@ -38,6 +39,9 @@ const SearchComponent = props => {
           type="text"
         />
       </InputContainer>
+        {alertMessage !== '' ? 
+          <AlertMessage alertMessage={alertMessage}/> : null
+        }
     </SearchContainer>
     </>
   )

@@ -6,34 +6,55 @@ import TopContainer from '../Atoms/TopContainer'
 import CheeseAisle from '../Molecules/CheeseAisle'
 import StoreSubTitle from '../Atoms/StoreSubTitle'
 import SearchComponent from '../Molecules/SearchComponent'
+import BottomCheckOutContainer from '../Atoms/BottomCheckOutContainer'
 
 const TitleContainer = styled.div`
   display: flex; 
   justify-content: flex-start; 
   width: 100%;
-  justify-content: space-between; 
+  align-items: center; 
+  justify-content: space-between;
+  background: ${props => props.background}; 
 `
 
 const InsideTheCheeseStore = props => {
-  const { customCheeseInventory, mainDisplayOptions, handleInput, cheeseInput, myCart, cart } = props 
+
+  const { customCheeseInventory, 
+        mainDisplayOptions, 
+        handleInput, 
+        cheeseInput, 
+        myCart, 
+        handleCartUpdate,
+        gotoCheckout,
+        alertMessage, 
+      } = props 
+
   return (
     <>
-      <MainCheeseStoreContainer>
-        <TopContainer/>
-        <TitleContainer>
-          <StoreSubTitle> LOCAL SPECIALS </StoreSubTitle>
+      <MainCheeseStoreContainer background={'#FACA66'}>
+        <TopContainer myCart={myCart} gotoCheckout={gotoCheckout}/>
+        <TitleContainer background={'#211B1B'}>
+          <StoreSubTitle color={'#EE8C1D'}> LOCAL SPECIALS </StoreSubTitle>
         </TitleContainer>
-        <CheeseSpecialSlider customCheeseInventory={customCheeseInventory} />
+        <CheeseSpecialSlider 
+          customCheeseInventory={customCheeseInventory}
+          handleCartUpdate={handleCartUpdate}
+        />
         <TitleContainer>
-          <StoreSubTitle> Gourmet Cheeses </StoreSubTitle>
+          <StoreSubTitle color={'#211B1B'}> Gourmet Cheeses </StoreSubTitle>
           <SearchComponent 
             handleInput={handleInput}
             cheeseInput={cheeseInput}
+            alertMessage={alertMessage}
           />
         </TitleContainer>
         <CheeseAisle 
           mainDisplayOptions={mainDisplayOptions}
-          cart={cart}
+          handleCartUpdate={handleCartUpdate}
+        />
+        <BottomCheckOutContainer 
+          gotoCheckout={gotoCheckout}
+          myCart={myCart}
         />
       </MainCheeseStoreContainer>
     </>

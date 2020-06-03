@@ -7,7 +7,7 @@ const MainCheeseStoreContainer = styled.div`
   max-width: 768px; 
   min-height: 100vh; 
   width: 100%;
-  background: #BFBFBF;
+  background: ${props => props.background};
 `
 
 export default MainCheeseStoreContainer

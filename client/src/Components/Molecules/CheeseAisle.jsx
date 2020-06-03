@@ -12,7 +12,7 @@ const CheeseAisleContainer = styled.div`
 `
 
 const CheeseAisle = props => {
-  const { mainDisplayOptions, cart } = props
+  const { mainDisplayOptions, handleCartUpdate } = props
   return(
     <>
       <CheeseAisleContainer>
@@ -27,7 +27,7 @@ const CheeseAisle = props => {
                 price={cheese.price}
                 discount={cheese.discount}
                 country={cheese.country}
-                cart={cart}
+                handleCartUpdate={handleCartUpdate}
               />
             )
           }

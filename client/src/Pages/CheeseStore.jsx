@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import OuterContainer from '../Components/Atoms/OuterContainer'
 import WelcomeScreen from '../Components/Organisms/WelcomeScreen'
 import InsideTheCheeseStore from '../Components/Organisms/InsideTheCheeseStore'
+import CheckOut from '../Components/Organisms/CheckOut'
 
 class CheeseStore extends Component {
   constructor () {
@@ -69,11 +70,22 @@ class CheeseStore extends Component {
         return
       }
     }
-    this.setState({[key]: newKeyValue})
+    this.setState({[key]: newKeyValue, alertMessage: ''})
   }
 
-  cart = () => {
-    console.log ( 'cheese pressed')
+  handleCartUpdate = (cheese) => {
+    const { myCart } = this.state
+    myCart.push(cheese)
+    this.setState({myCart})
+  }
+
+  gotoCheckout = () => {
+    const { page, myCart } = this.state
+    let newPage = page
+    newPage += 1
+    if (myCart.length > 0 ) {
+      this.setState({ page: newPage })
+    }
   }
 
   handleZipButtonClick = () => {
@@ -92,7 +104,11 @@ class CheeseStore extends Component {
     }
     const cheeseSearchResults = entireCheeseInventory.filter(cheese => filterCheeses(cheese))
     if (cheeseSearchResults.length > 90) cheeseSearchResults.splice(90)
-    this.setState({ cheeseInput: '', mainDisplayOptions: cheeseSearchResults })
+    if (cheeseSearchResults.length < 1) {
+      this.setState ({ cheeseInput: '', alertMessage: 'noCheeses'})
+    } else {
+      this.setState({ cheeseInput: '', mainDisplayOptions: cheeseSearchResults })
+    }
   }
 
   getSpecials = (zip) => {
@@ -181,8 +197,13 @@ class CheeseStore extends Component {
               handleInput={this.handleInput}
               cheeseInput={ cheeseInput }
               myCart={myCart}
-              cart={this.cart}
+              handleCartUpdate={this.handleCartUpdate}
+              gotoCheckout={this.gotoCheckout}
+              alertMessage={alertMessage}
             />
+          )}
+          {page === 3 && (
+            <CheckOut/>
           )}
         </OuterContainer>
       </>

@@ -20,19 +20,52 @@ const FrankCheeseLogo = styled.img`
   width: auto; 
 `
 
+const OuterBasketDiv = styled.div` 
+  display: flex; 
+  flex-direction: row;
+  align-items: center; 
+`
+
+const Counter = styled.div`
+  background: #EE8C1D;
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%;
+  font-family: 'Cera Pro Bold';
+  font-size: 24px; 
+  color: #211B1B; 
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+    background: #FACA66;
+  }  
+`
+
 const ShoppingBasketDiv = styled.div`
   font-size: 28px; 
   color: #FACA66;
-  margin-right: 25px; 
+  margin-right: 25px;
+
+  &:hover{
+    cursor: pointer; 
+    color: #EE8C1D;
+  } 
 `
 
-const TopContainer = () => {
+const TopContainer = (props) => {
+  const { myCart, gotoCheckout } = props
+  const cartSize = myCart.length
   return (
     <TopWrapper>
         <FrankCheeseLogo src={frankLogo}/>
-        <ShoppingBasketDiv>
-          <FontAwesomeIcon icon={faShoppingBasket}/>
-        </ShoppingBasketDiv>
+        <OuterBasketDiv onClick={()=> gotoCheckout()}>
+          {cartSize > 0 && (
+            <Counter>{cartSize}</Counter>
+          )}
+          <ShoppingBasketDiv>
+            <FontAwesomeIcon icon={faShoppingBasket}/>
+          </ShoppingBasketDiv>
+        </OuterBasketDiv>
     </TopWrapper>
   )
 }

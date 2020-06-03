@@ -3,8 +3,8 @@ import styled from 'styled-components'
 const StyledButton = styled.input`
   height: 45px;
   width: 200px;
-  background: #EE8C1D;
-  color: #211B1B; 
+  background: ${props => props.background};
+  color: ${props => props.color};
   font-family: 'Cera Pro Black';
   margin: ${props => props.margin};
   font-size: 18.667px;
@@ -18,7 +18,8 @@ const StyledButton = styled.input`
   }
   
   &:hover {
-    background: #FACA66; 
+    background: ${props => props.hover};
+    cursor: pointer; 
   } 
 `
 

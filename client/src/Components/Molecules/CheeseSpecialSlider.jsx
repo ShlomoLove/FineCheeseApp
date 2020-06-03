@@ -12,11 +12,10 @@ import rightHover from '../../Assets/FFC_arrow_hover_right.png'
 import rightInactive from '../../Assets/FFC_arrow_inactive_right.png'
 
 const StyledSlider = styled(Slider)`
-  background: #723503; 
+  background: #211B1B; 
   width: 100%;
   display: grid;
   grid-template-columns: 2fr 8fr 2fr;
-  border-radius: 5px;
 `
 
 const ArrowContainer = styled.div`
@@ -36,6 +35,7 @@ const StyledArrow = styled.div`
   &:hover{
     background: url(${props => props.hoverBackground});
     background-size: 30px;
+    cursor: pointer;
   }
 `
 
@@ -73,7 +73,7 @@ const OutsideCheeseContainer = styled.div`
 `
 
 const CheeseSpecialSlider = props => {
-  const { customCheeseInventory } = props
+  const { customCheeseInventory, handleCartUpdate } = props
   const [displayLeft, setDisplayLeft] = useState(false)
   const [displayRight, setDisplayRight] = useState(true)
 
@@ -108,6 +108,7 @@ const CheeseSpecialSlider = props => {
               price={cheese.price}
               discount={cheese.discount}
               country={cheese.country}
+              handleCartUpdate={handleCartUpdate}
             />
           </OutsideCheeseContainer>
         ))}
