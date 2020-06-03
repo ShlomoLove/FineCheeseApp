@@ -1,5 +1,15 @@
 const { Cheeses, Specials } = require ('../db/index.js')
 
+const getAllCheeses = (req, res) => {
+  Cheeses.find()
+  .then(cheeses => {
+    res.json(cheeses)
+  })
+  .catch(error => {
+    res.status(400).send(`error getting cheeses from DB: ${error}`)
+  })
+}
+
 const getCheeses = (req, res) => {
   Cheeses.find({id: req.params.id})
   .then(cheeses => {
@@ -20,4 +30,4 @@ const getSpecials = (req, res) => {
   })
 }
 
-module.exports = { getCheeses, getSpecials }
+module.exports = { getCheeses, getSpecials, getAllCheeses }

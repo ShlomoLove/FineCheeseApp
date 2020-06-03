@@ -1,0 +1,45 @@
+import React from 'react'
+import styled from 'styled-components'
+import IntroContainer from '../Molecules/IntroContainer'
+import StyledInput from '../Atoms/StyledInput'
+import StyledButton from '../Atoms/StyledButton'
+import MainCheeseStoreContainer from '../Atoms/MainCheeseStoreContainer'
+import AlertMessage from '../Atoms/AlertMessage'
+
+const StyledForm = styled.form`
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+`
+
+const WelcomeScreen = (props) => {
+  const { handleInput, handleZipButtonClick, alertMessage, zipInput } = props
+  return (
+    <>
+      <MainCheeseStoreContainer>
+        <IntroContainer/>
+        {alertMessage !== '' ? 
+          <AlertMessage alertMessage={alertMessage}/> : null
+        }
+        <StyledForm>
+          <StyledInput 
+            value={zipInput} 
+            placeholder='ZIP CODE' 
+            margin={'20px'} 
+            onKeyDown={(e) => handleInput(e, 'zipInput')}
+            onChange={handleInput}
+            type="text"
+          />
+          <StyledButton 
+            margin={'20px'} 
+            type='button' 
+            value='ENTER ZIP' 
+            onClick={()=> handleZipButtonClick ()}/>
+        </StyledForm>
+      </MainCheeseStoreContainer>
+    </>
+  )
+}
+
+export default WelcomeScreen
