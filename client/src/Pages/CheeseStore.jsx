@@ -56,14 +56,13 @@ class CheeseStore extends Component {
     let newKeyValue = inputString
     if (newKey.length === 1) {
       newKeyValue = `${inputString}${newKey}`
+      if (key === 'cheeseInput') this.handleCheeseSearch()
     } 
     if (newKey === 'Backspace') {
       newKeyValue = inputString.slice(0, -1)
     }
     if (newKey === 'Enter') {
-      if (key === 'zipInput') {
-        this.handleZipButtonClick()
-      }
+      if (key === 'zipInput') this.handleZipButtonClick()
       if (key === 'cheeseInput') {
         this.handleCheeseSearch()
         return
