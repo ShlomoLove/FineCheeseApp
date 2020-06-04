@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import GlobalStyleFont from '../Components/Atoms/GlobalFonts'
 import axios from 'axios'
-import styled from 'styled-components'
 import OuterContainer from '../Components/Atoms/OuterContainer'
 import WelcomeScreen from '../Components/Organisms/WelcomeScreen'
 import InsideTheCheeseStore from '../Components/Organisms/InsideTheCheeseStore'
@@ -29,7 +28,7 @@ class CheeseStore extends Component {
     let countryObject = {}
     let cheeseObject = {}
     axios
-    .get('/cheeses/')
+    .get('http://34.219.13.24:9000/cheeses/')
     .then(({data}) => {
       for (let cheese of data) {
         if (cheese.country && !countryObject[cheese.country]) {
@@ -137,7 +136,7 @@ class CheeseStore extends Component {
 
   getSpecials = (zip) => {
     axios
-    .get(`/specials/${zip}`)
+    .get(`http://34.219.13.24:9000/specials/${zip}`)
     .then(({data}) => {
       if (data.length === 0) {
         this.setState({alertMessage: 'errorResponse'})
@@ -154,7 +153,7 @@ class CheeseStore extends Component {
       return cheese.cheeseID
     })
     axios
-    .all(idArray.map(cheeseID => axios.get(`/cheeses/${cheeseID}`)))
+    .all(idArray.map(cheeseID => axios.get(`http://34.219.13.24:9000/cheeses/${cheeseID}`)))
     .then(responses => {
       const cheeseArray = responses.map(response => {
         return response.data[0]
