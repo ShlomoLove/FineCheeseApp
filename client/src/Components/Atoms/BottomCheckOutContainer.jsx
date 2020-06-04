@@ -4,13 +4,17 @@ import StyledButton from './StyledButton'
 import FrankLogo from '../../Assets/FFC_logo_2_dark.png'
 
 const BottomContainer = styled.div`
+  max-width: 768px; 
+  position: fixed; 
+  bottom: 0px;
+  z-index: 5; 
   display: flex; 
   flex-direction: row;
   align-items: center;  
   justify-content: space-between; 
   background: #211B1B;
   width: 100%;
-  height: 110px; 
+  height: 70px; 
 `
 
 const LogoContainer = styled.div `

@@ -21,6 +21,12 @@ const StyledButton = styled.input`
     background: ${props => props.hover};
     cursor: pointer; 
   } 
+
+  @media(max-width: 480px) {
+    width: 130px;
+    height: 38px;
+    font-size: 15px; 
+  }
 `
 
 export default StyledButton

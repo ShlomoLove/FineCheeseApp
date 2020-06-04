@@ -9,12 +9,17 @@ import SearchComponent from '../Molecules/SearchComponent'
 import BottomCheckOutContainer from '../Atoms/BottomCheckOutContainer'
 
 const TitleContainer = styled.div`
+  padding-top: ${props => props.top}; 
   display: flex; 
   justify-content: flex-start; 
   width: 100%;
   align-items: center; 
   justify-content: space-between;
-  background: ${props => props.background}; 
+  background: ${props => props.background};
+
+  @media(max-width: 480px) {
+    flex-direction: column;
+  } 
 `
 
 const InsideTheCheeseStore = props => {
@@ -33,14 +38,14 @@ const InsideTheCheeseStore = props => {
     <>
       <MainCheeseStoreContainer background={'#FACA66'}>
         <TopContainer myCart={myCart} gotoCheckout={gotoCheckout}/>
-        <TitleContainer background={'#211B1B'}>
+        <TitleContainer top={'70px'} background={'#211B1B'}>
           <StoreSubTitle color={'#EE8C1D'}> LOCAL SPECIALS </StoreSubTitle>
         </TitleContainer>
         <CheeseSpecialSlider 
           customCheeseInventory={customCheeseInventory}
           handleCartUpdate={handleCartUpdate}
         />
-        <TitleContainer>
+        <TitleContainer top={'0px'}>
           <StoreSubTitle color={'#211B1B'}> Gourmet Cheeses </StoreSubTitle>
           <SearchComponent 
             handleInput={handleInput}

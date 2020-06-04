@@ -16,6 +16,11 @@ const StyledInput = styled.input`
   :focus {
     border-color: #EE8C1D; 
   }
+
+  @media(max-width: 480px) {
+    width: 180px;
+    height: 40px; 
+  }
 `
 
 export default StyledInput

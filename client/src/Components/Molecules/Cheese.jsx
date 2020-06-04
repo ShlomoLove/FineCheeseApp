@@ -17,6 +17,7 @@ const CheeseName = styled.h4`
   font-size: 32px;
   color: #211B1B;
   margin: 5px;
+  
   @media screen and (max-width: 750px) and (min-width: 550px) {
     font-size: 26px; 
   } 

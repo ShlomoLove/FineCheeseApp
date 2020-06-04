@@ -6,6 +6,10 @@ import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons'
 
 
 const TopWrapper = styled.div`
+  max-width: 768px; 
+  position: fixed;
+  top: 0px;
+  z-index: 5; 
   display: flex;
   justify-content: space-between;
   align-items: center; 

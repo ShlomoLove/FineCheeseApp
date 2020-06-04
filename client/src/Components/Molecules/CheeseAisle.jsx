@@ -8,7 +8,8 @@ const CheeseAisleContainer = styled.div`
   grid-template-columns: 1fr 1fr; 
   flex-direction: column; 
   justify-content: center;
-  align-items: center; 
+  align-items: center;
+  padding-bottom: 75px;  
 `
 
 const CheeseAisle = props => {
