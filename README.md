@@ -1,3 +1,4 @@
+![](./client/src/Assets/FFC_logo_1.png)
 # FineCheeseApp
 Frank's Fine Cheeses. Purveyors of the finest cheeses in the world. The Frank Cheese App gives the user the ability to have access to gourment cheeses in Los Angeles County. Upon loading the app the user is able to enter their zip code to discover what specials are available in their community. The user is able to search for any cheese in the Frank database according to Country or by Cheese Name. Once the user has selected all the desired cheeses they are then taken to the checkout screen. The checkout screen provides them with a list of all the cheeses in their basket and the quantity for each cheese. The cheeses on discount list the percent discount and have that calculated in their total listed at the bottom of the screen. 
 
