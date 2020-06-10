@@ -224,6 +224,7 @@ class CheeseStore extends Component {
               handleCartUpdate={this.handleCartUpdate}
               gotoCheckout={this.gotoCheckout}
               alertMessage={alertMessage}
+              zipInput={zipInput}
             />
           )}
           {page === 3 && (
