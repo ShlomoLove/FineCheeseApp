@@ -215,7 +215,8 @@ class CheeseStore extends Component {
             />
           )}
           {(page === 2 && customCheeseInventory) && (
-            <InsideTheCheeseStore 
+            <InsideTheCheeseStore
+              handleZipButtonClick={this.handleZipButtonClick}  
               customCheeseInventory={customCheeseInventory}
               mainDisplayOptions={mainDisplayOptions}
               handleInput={this.handleInput}
