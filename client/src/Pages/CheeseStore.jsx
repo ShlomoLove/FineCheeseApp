@@ -199,7 +199,8 @@ class CheeseStore extends Component {
       cheeseInput,
       myCart,
       checkoutCart,
-      cartTotal
+      cartTotal,
+      zip
     } = this.state
     console.log (this.state, 'state')
     return (
@@ -226,6 +227,7 @@ class CheeseStore extends Component {
               gotoCheckout={this.gotoCheckout}
               alertMessage={alertMessage}
               zipInput={zipInput}
+              zip={zip}
             />
           )}
           {page === 3 && (

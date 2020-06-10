@@ -42,7 +42,8 @@ const InsideTheCheeseStore = props => {
         gotoCheckout,
         alertMessage, 
         zipInput, 
-        handleZipButtonClick
+        handleZipButtonClick,
+        zip
       } = props 
 
   return (
@@ -50,7 +51,7 @@ const InsideTheCheeseStore = props => {
       <MainCheeseStoreContainer background={'#FACA66'}>
         <TopContainer myCart={myCart} gotoCheckout={gotoCheckout}/>
         <TitleContainer top={'70px'} background={'#211B1B'}>
-          <StoreSubTitle color={'#EE8C1D'}> LOCAL SPECIALS </StoreSubTitle>
+          <StoreSubTitle color={'#EE8C1D'}> LOCAL SPECIALS in {zip} </StoreSubTitle>
           <ZipInputContainer>
             <StyledInput 
               value={zipInput} 
