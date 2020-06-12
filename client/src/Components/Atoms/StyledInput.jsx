@@ -4,8 +4,8 @@ const StyledInput = styled.input`
   font-family: 'Cera Pro Light';
   font-size: 22px;
   outline: none; 
-  height: 45px;
-  width: 200px;
+  height: ${props => props.height};
+  width: ${props => props.width};
   background: #EFEFF4;
   border: solid #EFEFF4;  
   border-radius: 10px;
@@ -18,8 +18,9 @@ const StyledInput = styled.input`
   }
 
   @media(max-width: 480px) {
-    width: 180px;
-    height: 40px; 
+    width: ${props => props.smWidth};
+    height: ${props => props.smHeight};
+    font-size: 18px; 
   }
 `
 

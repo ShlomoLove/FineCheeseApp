@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 const StyledButton = styled.input`
-  height: 45px;
-  width: 200px;
+  height: ${props => props.height};
+  width: ${props => props.width};
   background: ${props => props.background};
   color: ${props => props.color};
   font-family: 'Cera Pro Black';
@@ -23,8 +23,8 @@ const StyledButton = styled.input`
   } 
 
   @media(max-width: 480px) {
-    width: 130px;
-    height: 38px;
+    width: ${props => props.smWidth};
+    height: ${props => props.smHeight};
     font-size: 15px; 
   }
 `

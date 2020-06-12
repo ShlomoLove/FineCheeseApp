@@ -51,6 +51,10 @@ const BottomCheckOutContainer = props => {
           margin={'30px'}
           type="button"
           value="Checkout"
+          height={'45px'}
+          smHeight={'38px'}
+          width={'200px'}
+          smWidth={'130px'}
           onClick={()=> gotoCheckout()}  
         />
       </BottomContainer>

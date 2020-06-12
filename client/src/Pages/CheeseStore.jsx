@@ -38,7 +38,7 @@ class CheeseStore extends Component {
         if (cheeseObject[cheese.name] !== cheese.name) {
           cheeseObject[cheese.name] = true
           cheeseList.push(cheese.name)
-        }
+        } 
       }
       this.setState({
         entireCheeseInventory: data,
@@ -50,25 +50,28 @@ class CheeseStore extends Component {
   }
 
   handleInput = (event, key) => {
+    const { alertMessage } = this.state
     event.preventDefault()
     const inputString = this.state[key]
     const newKey = event.key
     let newKeyValue = inputString
     if (newKey.length === 1) {
       newKeyValue = `${inputString}${newKey}`
-      if (key === 'cheeseInput') this.handleCheeseSearch()
     } 
     if (newKey === 'Backspace') {
       newKeyValue = inputString.slice(0, -1)
     }
     if (newKey === 'Enter') {
-      if (key === 'zipInput') this.handleZipButtonClick()
+      if (key === 'zipInput') return this.handleZipButtonClick()
       if (key === 'cheeseInput') {
-        this.handleCheeseSearch()
+        this.setState({ [key]: '' })
+        this.handleCheeseSearch(newKeyValue)
         return
       }
     }
-    this.setState({[key]: newKeyValue, alertMessage: ''})
+    const stateObj = (alertMessage === 'notValid' || alertMessage === 'errorResponse') ? {alertMessage: '', [key]: newKeyValue} : {[key]: newKeyValue}
+    if (key === 'cheeseInput') this.handleCheeseSearch(newKeyValue)
+    this.setState(stateObj)
   }
 
   handleCartUpdate = (cheese) => {
@@ -119,18 +122,18 @@ class CheeseStore extends Component {
     }
   }
 
-  handleCheeseSearch = () => {
-    const { cheeseInput, entireCheeseInventory } = this.state
+  handleCheeseSearch = (input) => {
+    const { entireCheeseInventory } = this.state
     const filterCheeses = (cheese) => {
-      return (cheese.name.toLowerCase().includes(cheeseInput.toLowerCase()) || cheese.country.toLowerCase().includes(cheeseInput.toLowerCase()))
+      return (cheese.name.toLowerCase().includes(input.toLowerCase()) || cheese.country.toLowerCase().includes(input.toLowerCase()))
     }
     const cheeseSearchResults = entireCheeseInventory.filter(cheese => filterCheeses(cheese))
     if (cheeseSearchResults.length > 90) cheeseSearchResults.splice(90)
-    if (cheeseSearchResults.length < 1) {
-      this.setState ({ cheeseInput: '', alertMessage: 'noCheeses'})
-    } else {
-      this.setState({ cheeseInput: '', mainDisplayOptions: cheeseSearchResults })
-    }
+    const newStateObj = cheeseSearchResults.length >= 1 ? 
+    {mainDisplayOptions: cheeseSearchResults, alertMessage: '' } 
+    :
+    { mainDisplayOptions: cheeseSearchResults, alertMessage: 'noCheeses'}
+    this.setState(newStateObj)
   }
 
   getSpecials = (zip) => {
@@ -202,7 +205,9 @@ class CheeseStore extends Component {
       cartTotal,
       zip
     } = this.state
+
     console.log (this.state, 'state')
+    
     return (
       <>
         <GlobalStyleFont />

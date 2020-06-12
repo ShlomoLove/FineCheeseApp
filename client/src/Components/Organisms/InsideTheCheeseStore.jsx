@@ -9,13 +9,13 @@ import CheeseAisle from '../Molecules/CheeseAisle'
 import StoreSubTitle from '../Atoms/StoreSubTitle'
 import SearchComponent from '../Molecules/SearchComponent'
 import BottomCheckOutContainer from '../Atoms/BottomCheckOutContainer'
+import AlertMessage from '../Atoms/AlertMessage'
 
 const TitleContainer = styled.div`
   padding-top: ${props => props.top}; 
   display: flex; 
-  justify-content: flex-start; 
   width: 100%;
-  align-items: center; 
+  align-items: flex-end; 
   justify-content: space-between;
   background: ${props => props.background};
 
@@ -26,9 +26,11 @@ const TitleContainer = styled.div`
 
 const ZipInputContainer = styled.div`
   display: flex; 
-  flex-direction: column; 
+  flex-direction: ${props => props.direction}; 
   justify-content: center; 
   align-items: center; 
+  background: #211B1B;
+  width: 100%; 
 `
 
 const InsideTheCheeseStore = props => {
@@ -52,11 +54,21 @@ const InsideTheCheeseStore = props => {
         <TopContainer myCart={myCart} gotoCheckout={gotoCheckout}/>
         <TitleContainer top={'70px'} background={'#211B1B'}>
           <StoreSubTitle color={'#EE8C1D'}> LOCAL SPECIALS in {zip} </StoreSubTitle>
-          <ZipInputContainer>
+        </TitleContainer>
+        <CheeseSpecialSlider 
+          customCheeseInventory={customCheeseInventory}
+          handleCartUpdate={handleCartUpdate}
+        />
+        <ZipInputContainer direction={'column'}>
+          <ZipInputContainer direction={'row'}>
             <StyledInput 
               value={zipInput} 
-              placeholder='ZIP CODE' 
+              placeholder='Change ZIP' 
               margin={'20px'} 
+              height={'40px'}
+              width={'170px'}
+              smHeight={'33px'}
+              smWidth={'130px'}
               onKeyDown={(e) => handleInput(e, 'zipInput')}
               onChange={handleInput}
               type="text"
@@ -66,15 +78,21 @@ const InsideTheCheeseStore = props => {
               hover={'#FACA66'} 
               color={'211B1B'}
               margin={'20px'} 
-              type='button' 
+              type='button'
+              height={'42px'}
+              width={'170px'}
+              smHeight={'33px'}
+              smWidth={'110px'}
               value='UPDATE ZIP' 
-              onClick={()=> handleZipButtonClick ()}/>
+              onClick={()=> handleZipButtonClick ()}
+            />
           </ZipInputContainer>
-        </TitleContainer>
-        <CheeseSpecialSlider 
-          customCheeseInventory={customCheeseInventory}
-          handleCartUpdate={handleCartUpdate}
-        />
+          {alertMessage !== '' ? 
+            <AlertMessage alertMessage={alertMessage}/> 
+            :
+            <AlertMessage></AlertMessage>
+          }
+          </ZipInputContainer>
         <TitleContainer top={'0px'}>
           <StoreSubTitle color={'#211B1B'}> Gourmet Cheeses </StoreSubTitle>
           <SearchComponent 

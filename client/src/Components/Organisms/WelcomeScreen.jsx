@@ -30,6 +30,11 @@ const WelcomeScreen = (props) => {
             onKeyDown={(e) => handleInput(e, 'zipInput')}
             onChange={handleInput}
             type="text"
+            height={'45px'}
+            width={'200px'}
+            smWidth={'180px'}
+            smHeight={'40px'}
+
           />
           <StyledButton
             background={'#EE8C1D'}
@@ -37,7 +42,11 @@ const WelcomeScreen = (props) => {
             color={'211B1B'}
             margin={'20px'} 
             type='button' 
-            value='ENTER ZIP' 
+            value='ENTER ZIP'
+            height={'45px'}
+            smHeight={'38px'}
+            width={'200px'}
+            smWidth={'130px'}
             onClick={()=> handleZipButtonClick ()}/>
         </StyledForm>
       </MainCheeseStoreContainer>

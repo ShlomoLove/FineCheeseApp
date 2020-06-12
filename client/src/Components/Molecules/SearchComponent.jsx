@@ -36,11 +36,17 @@ const SearchComponent = props => {
           margin={'5px'}
           onKeyDown={(e) => handleInput(e, 'cheeseInput')}
           onChange={handleInput}
+          height={'45px'}
+          width={'200px'}
           type="text"
-        />
+          smWidth={'150px'}
+          smHeight={'40px'}
+          />
       </InputContainer>
-        {alertMessage !== '' ? 
-          <AlertMessage alertMessage={alertMessage}/> : null
+        {alertMessage === 'noCheeses' ? 
+          <AlertMessage alertMessage={alertMessage}/> 
+          :
+          <AlertMessage></AlertMessage>
         }
     </SearchContainer>
     </>

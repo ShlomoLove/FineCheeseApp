@@ -58,7 +58,11 @@ const Cheese = props => {
             background={'#EE8C1D'}
             hover={'#FACA66'}
             color={'211B1B'}
-            margin={'10px'} 
+            margin={'10px'}
+            height={'45px'}
+            smHeight={'38px'}
+            width={'200px'}
+            smWidth={'130px'} 
             type='button' 
             value='Add to Cart' 
             onClick={() => handleCartUpdate(thisCheese)}
