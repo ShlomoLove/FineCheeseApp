@@ -98,7 +98,7 @@ const TotalText = styled.div`
 `
 
 const CheckOut = props => {
-  const { cartTotal, myCart } = props
+  const { cartTotal, myCart, prevPage, nextPage } = props
   console.log (myCart, "myCart")
   return (
     <>
@@ -148,7 +148,7 @@ const CheckOut = props => {
           smHeight={'38px'}
           width={'200px'}
           smWidth={'130px'}
-          onClick={()=> gotoCheckout()}  
+          onClick={()=> prevPage()}  
         />
         <StyledButton
           background={'#EE8C1D'}
@@ -156,12 +156,12 @@ const CheckOut = props => {
           color={'#211B1B'}
           margin={'30px'}
           type="button"
-          value="Continue Order"
+          value="Confirm Order"
           height={'45px'}
           smHeight={'38px'}
           width={'200px'}
           smWidth={'130px'}
-          onClick={()=> gotoCheckout()}  
+          onClick={()=> nextPage()}  
         />
 
         </BottomContainer>

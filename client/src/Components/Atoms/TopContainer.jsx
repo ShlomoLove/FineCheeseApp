@@ -57,11 +57,11 @@ const ShoppingBasketDiv = styled.div`
 `
 
 const TopContainer = (props) => {
-  const { myCart, gotoCheckout, totalItems } = props
+  const { myCart, nextPage, totalItems } = props
   return (
     <TopWrapper>
         <FrankCheeseLogo src={frankLogo}/>
-        <OuterBasketDiv onClick={()=> gotoCheckout()}>
+        <OuterBasketDiv onClick={()=> nextPage()}>
           {totalItems > 0 && (
             <Counter>{totalItems}</Counter>
           )}

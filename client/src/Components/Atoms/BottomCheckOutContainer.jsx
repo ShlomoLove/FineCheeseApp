@@ -21,7 +21,7 @@ const StyledLogo = styled.img`
 `
 
 const BottomCheckOutContainer = props => {
-  const { gotoCheckout, totalItems } = props
+  const { nextPage, totalItems } = props
   const background = totalItems > 0 ? '#EE8C1D' : '#BFBFBF'
   const hover = totalItems > 0 ? '#FACA66' : '#BFBFBF'
   const color = totalItems > 0 ? '#211B1B' : '#EFEFF4'
@@ -42,7 +42,7 @@ const BottomCheckOutContainer = props => {
           smHeight={'38px'}
           width={'200px'}
           smWidth={'130px'}
-          onClick={()=> gotoCheckout()}  
+          onClick={()=> nextPage()}  
         />
       </BottomContainer>
     </>

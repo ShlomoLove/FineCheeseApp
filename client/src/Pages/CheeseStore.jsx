@@ -5,6 +5,7 @@ import OuterContainer from '../Components/Atoms/OuterContainer'
 import WelcomeScreen from '../Components/Organisms/WelcomeScreen'
 import InsideTheCheeseStore from '../Components/Organisms/InsideTheCheeseStore'
 import CheckOut from '../Components/Organisms/CheckOut'
+import Confirm from '../Components/Organisms/Confirm'
 
 class CheeseStore extends Component {
   constructor () {
@@ -96,12 +97,19 @@ class CheeseStore extends Component {
     this.setState({myCart, cartTotal: newCartTotal, totalItems: newTotalItems })
   }
 
-  gotoCheckout = () => {
+  nextPage = () => {
     const { page } = this.state
     let newPage = page
     newPage += 1
     this.setState({ page: newPage })
     }
+
+  prevPage = () => {
+    const { page } = this.state
+    let newPage = page
+    newPage -= 1
+    this.setState({ page: newPage })
+  }
 
   handleZipButtonClick = () => {
     const { zipInput } = this.state
@@ -219,7 +227,7 @@ class CheeseStore extends Component {
               cheeseInput={ cheeseInput }
               myCart={myCart}
               handleCartUpdate={this.handleCartUpdate}
-              gotoCheckout={this.gotoCheckout}
+              nextPage={this.nextPage}
               alertMessage={alertMessage}
               zipInput={zipInput}
               zip={zip}
@@ -230,7 +238,12 @@ class CheeseStore extends Component {
             <CheckOut 
               cartTotal={cartTotal}
               myCart={myCart}
+              prevPage={this.prevPage}
+              nextPage={this.nextPage}
             />
+          )}
+          {page === 4 && (
+            <Confirm />
           )}
         </OuterContainer>
       </>
