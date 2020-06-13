@@ -80,6 +80,37 @@ class CheeseStore extends Component {
     this.setState({myCart})
   }
 
+  createTheCart = () => {
+    const { myCart } = this.state
+    if (myCart.length > 0 ) {
+      let cartObject = {}
+      for (let cheese of myCart) {
+        if (!cartObject[cheese.id]) {
+          cheese.quantity = 1
+          cartObject[cheese.id] = cheese
+        } else {
+          cartObject[cheese.id].quantity += 1;
+        }
+      }
+      let checkoutCart = []
+      let cartTotal = 0
+      for (let key in cartObject) {
+        let discount = cartObject[key].discount
+        let price =  cartObject[key].price
+        let quantity = cartObject[key].quantity
+        let amountOff = discount ? (price/100)*discount : 0
+        let newPrice = Number(price - amountOff)
+        let total = Number(newPrice * quantity)
+        cartTotal += total
+        cartObject[key].total = total.toFixed(2)
+        
+        checkoutCart.push(cartObject[key])
+      }
+      cartTotal = cartTotal.toFixed(2)
+      this.setState({ page: newPage, checkoutCart, cartTotal })
+    }
+  }
+
   gotoCheckout = () => {
     const { page, myCart } = this.state
     let newPage = page
