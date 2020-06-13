@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import MainCheeseStoreContainer from '../Atoms/MainCheeseStoreContainer'
 import FrankLogo from '../../Assets/FFC_logo_2_light.png'
+import BottomContainer from '../Atoms/BottomContainer'
 
 const TopLogoContainer = styled.div`
   width: 100%;
@@ -96,8 +97,8 @@ const TotalText = styled.div`
 `
 
 const CheckOut = props => {
-  const { checkoutCart, cartTotal } = props
-
+  const { cartTotal, myCart } = props
+  console.log (myCart, "myCart")
   return (
     <>
       <MainCheeseStoreContainer background={'#E8D7A5'}>
@@ -112,7 +113,9 @@ const CheckOut = props => {
           <CategoryHeaders>Discount</CategoryHeaders>
           <CategoryHeaders>Price</CategoryHeaders>
           <CategoryHeaders>Total</CategoryHeaders>
-          {checkoutCart.map(item => {
+          {Object.keys(myCart).map(cheeseId => {
+            let item = myCart[cheeseId]
+            console.log (item, "ITEM", myCart[cheeseId], 'MYCART', myCart, cheeseId)
             return(
             <>
               <ItemInformation>{item.name}</ItemInformation>
@@ -133,6 +136,7 @@ const CheckOut = props => {
           <TotalText left={'5.5vw'} right={0}>Cart Total</TotalText>
           <TotalText left={0} right={'5.5vw'}>{cartTotal}</TotalText>
         </TotalDiv>
+        <BottomContainer/>
       </MainCheeseStoreContainer>
     </>
   )

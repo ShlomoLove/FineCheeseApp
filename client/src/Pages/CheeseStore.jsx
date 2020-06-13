@@ -14,7 +14,9 @@ class CheeseStore extends Component {
       alertMessage: '',
       zipInput: '',
       cheeseInput: '',
-      myCart: []
+      myCart: {},
+      cartTotal: 0,
+      totalItems: 0
     }
   }
 
@@ -75,74 +77,31 @@ class CheeseStore extends Component {
   }
 
   handleCartUpdate = (cheese) => {
-    const { myCart } = this.state
-    myCart.push(cheese)
-    this.setState({myCart})
-  }
-
-  createTheCart = () => {
-    const { myCart } = this.state
-    if (myCart.length > 0 ) {
-      let cartObject = {}
-      for (let cheese of myCart) {
-        if (!cartObject[cheese.id]) {
-          cheese.quantity = 1
-          cartObject[cheese.id] = cheese
-        } else {
-          cartObject[cheese.id].quantity += 1;
-        }
-      }
-      let checkoutCart = []
-      let cartTotal = 0
-      for (let key in cartObject) {
-        let discount = cartObject[key].discount
-        let price =  cartObject[key].price
-        let quantity = cartObject[key].quantity
-        let amountOff = discount ? (price/100)*discount : 0
-        let newPrice = Number(price - amountOff)
-        let total = Number(newPrice * quantity)
-        cartTotal += total
-        cartObject[key].total = total.toFixed(2)
-        
-        checkoutCart.push(cartObject[key])
-      }
-      cartTotal = cartTotal.toFixed(2)
-      this.setState({ page: newPage, checkoutCart, cartTotal })
+    const { myCart, cartTotal, totalItems } = this.state
+    let newCartTotal = Number(Math.round(100*cartTotal)/100)
+    let newTotalItems = totalItems + 1
+    let discount = cheese.discount
+    let price = Number(cheese.price)
+    let amountOff = discount ? Number((price/100)*discount) : 0
+    let newPrice = Number(Math.round(100*(price - amountOff))/100)
+    newCartTotal += Number(Math.round(100*newPrice)/100)
+    if (!myCart[cheese.id]) {
+      myCart[cheese.id] = cheese
+      myCart[cheese.id].quantity = 1
+      myCart[cheese.id].total = newPrice
+    } else {
+      myCart[cheese.id].quantity += 1
+      myCart[cheese.id].total += newPrice
     }
+    this.setState({myCart, cartTotal: newCartTotal, totalItems: newTotalItems })
   }
 
   gotoCheckout = () => {
-    const { page, myCart } = this.state
+    const { page } = this.state
     let newPage = page
     newPage += 1
-    if (myCart.length > 0 ) {
-      let cartObject = {}
-      for (let cheese of myCart) {
-        if (!cartObject[cheese.id]) {
-          cheese.quantity = 1
-          cartObject[cheese.id] = cheese
-        } else {
-          cartObject[cheese.id].quantity += 1;
-        }
-      }
-      let checkoutCart = []
-      let cartTotal = 0
-      for (let key in cartObject) {
-        let discount = cartObject[key].discount
-        let price =  cartObject[key].price
-        let quantity = cartObject[key].quantity
-        let amountOff = discount ? (price/100)*discount : 0
-        let newPrice = Number(price - amountOff)
-        let total = Number(newPrice * quantity)
-        cartTotal += total
-        cartObject[key].total = total.toFixed(2)
-        
-        checkoutCart.push(cartObject[key])
-      }
-      cartTotal = cartTotal.toFixed(2)
-      this.setState({ page: newPage, checkoutCart, cartTotal })
+    this.setState({ page: newPage })
     }
-  }
 
   handleZipButtonClick = () => {
     const { zipInput } = this.state
@@ -234,7 +193,8 @@ class CheeseStore extends Component {
       myCart,
       checkoutCart,
       cartTotal,
-      zip
+      zip, 
+      totalItems
     } = this.state
 
     console.log (this.state, 'state')
@@ -264,12 +224,14 @@ class CheeseStore extends Component {
               alertMessage={alertMessage}
               zipInput={zipInput}
               zip={zip}
+              totalItems={totalItems}
             />
           )}
           {page === 3 && (
             <CheckOut 
               checkoutCart={checkoutCart}
               cartTotal={cartTotal}
+              myCart={myCart}
             />
           )}
         </OuterContainer>
