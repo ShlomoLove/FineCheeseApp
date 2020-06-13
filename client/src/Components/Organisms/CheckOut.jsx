@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import MainCheeseStoreContainer from '../Atoms/MainCheeseStoreContainer'
 import FrankLogo from '../../Assets/FFC_logo_2_light.png'
 import BottomContainer from '../Atoms/BottomContainer'
+import StyledButton from '../Atoms/StyledButton'
 
 const TopLogoContainer = styled.div`
   width: 100%;
@@ -135,7 +136,35 @@ const CheckOut = props => {
           <TotalText left={'5.5vw'} right={0}>Cart Total</TotalText>
           <TotalText left={0} right={'5.5vw'}>{cartTotal}</TotalText>
         </TotalDiv>
-        <BottomContainer/>
+        <BottomContainer>
+        <StyledButton
+          background={'#EE8C1D'}
+          hover={'#FACA66'}
+          color={'#211B1B'}
+          margin={'30px'}
+          type="button"
+          value="Back to Store"
+          height={'45px'}
+          smHeight={'38px'}
+          width={'200px'}
+          smWidth={'130px'}
+          onClick={()=> gotoCheckout()}  
+        />
+        <StyledButton
+          background={'#EE8C1D'}
+          hover={'#FACA66'}
+          color={'#211B1B'}
+          margin={'30px'}
+          type="button"
+          value="Continue Order"
+          height={'45px'}
+          smHeight={'38px'}
+          width={'200px'}
+          smWidth={'130px'}
+          onClick={()=> gotoCheckout()}  
+        />
+
+        </BottomContainer>
       </MainCheeseStoreContainer>
     </>
   )
