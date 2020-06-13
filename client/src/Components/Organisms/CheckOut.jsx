@@ -115,7 +115,6 @@ const CheckOut = props => {
           <CategoryHeaders>Total</CategoryHeaders>
           {Object.keys(myCart).map(cheeseId => {
             let item = myCart[cheeseId]
-            console.log (item, "ITEM", myCart[cheeseId], 'MYCART', myCart, cheeseId)
             return(
             <>
               <ItemInformation>{item.name}</ItemInformation>

@@ -21,11 +21,10 @@ const StyledLogo = styled.img`
 `
 
 const BottomCheckOutContainer = props => {
-  const { gotoCheckout, myCart } = props
-  const cartLength = myCart.length
-  const background = cartLength > 0 ? '#EE8C1D' : '#BFBFBF'
-  const hover = cartLength > 0 ? '#FACA66' : '#BFBFBF'
-  const color = cartLength > 0 ? '#211B1B' : '#EFEFF4'
+  const { gotoCheckout, totalItems } = props
+  const background = totalItems > 0 ? '#EE8C1D' : '#BFBFBF'
+  const hover = totalItems > 0 ? '#FACA66' : '#BFBFBF'
+  const color = totalItems > 0 ? '#211B1B' : '#EFEFF4'
   return (
     <>
       <BottomContainer>

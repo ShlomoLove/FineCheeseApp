@@ -191,7 +191,6 @@ class CheeseStore extends Component {
       mainDisplayOptions,
       cheeseInput,
       myCart,
-      checkoutCart,
       cartTotal,
       zip, 
       totalItems
@@ -229,7 +228,6 @@ class CheeseStore extends Component {
           )}
           {page === 3 && (
             <CheckOut 
-              checkoutCart={checkoutCart}
               cartTotal={cartTotal}
               myCart={myCart}
             />

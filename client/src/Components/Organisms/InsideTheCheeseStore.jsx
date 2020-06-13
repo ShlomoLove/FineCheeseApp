@@ -109,6 +109,8 @@ const InsideTheCheeseStore = props => {
         <BottomCheckOutContainer 
           gotoCheckout={gotoCheckout}
           myCart={myCart}
+          totalItems={totalItems}
+
         />
       </MainCheeseStoreContainer>
     </>
