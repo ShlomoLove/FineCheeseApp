@@ -11,7 +11,18 @@ const TopLogoContainer = styled.div`
   display: flex; 
   flex-direction: row;
   justify-content: flex-end; 
-  align-items: center; 
+  align-items: center;
+  position: fixed; 
+  top: 0px 
+  z-index: 5;
+  background: #BFBFBF;
+  max-width: 768px;
+`
+
+const MainCheckOutContainer = styled.div`
+  display: flex;
+  padding-top: 100px;
+  padding-bottom: 75px;  
 `
 
 const StyledLogo = styled.img`
@@ -106,36 +117,39 @@ const CheckOut = props => {
         <TopLogoContainer>
           <StyledLogo src={FrankLogo}/>
         </TopLogoContainer>
-        <CheckoutTitle>Review Your Cart</CheckoutTitle>
-        <CartGrid>
-          <CategoryHeaders>Name</CategoryHeaders>
-          <CategoryHeaders>Country</CategoryHeaders>
-          <CategoryHeaders>Quantity</CategoryHeaders>
-          <CategoryHeaders>Discount</CategoryHeaders>
-          <CategoryHeaders>Price</CategoryHeaders>
-          <CategoryHeaders>Total</CategoryHeaders>
-          {Object.keys(myCart).map(cheeseId => {
-            let item = myCart[cheeseId]
-            return(
-            <>
-              <ItemInformation>{item.name}</ItemInformation>
-              <ItemInformation>{item.country}</ItemInformation>
-              <ItemInformation>{item.quantity}</ItemInformation>
-              {item.discount !== undefined && (
-                <ItemInformation>{item.discount}%</ItemInformation>
-              )}
-              {item.discount === undefined && (
-                <ItemInformation></ItemInformation>
-              )}
-              <ItemInformation>${item.price}</ItemInformation>
-              <ItemInformation>${item.total}</ItemInformation>
-            </>
-          )})}
-        </CartGrid>
-        <TotalDiv>
-          <TotalText left={'5.5vw'} right={0}>Cart Total</TotalText>
-          <TotalText left={0} right={'5.5vw'}>{cartTotal}</TotalText>
-        </TotalDiv>
+        <MainCheckOutContainer>
+
+          <CheckoutTitle>Review Your Cart</CheckoutTitle>
+          <CartGrid>
+            <CategoryHeaders>Name</CategoryHeaders>
+            <CategoryHeaders>Country</CategoryHeaders>
+            <CategoryHeaders>Quantity</CategoryHeaders>
+            <CategoryHeaders>Discount</CategoryHeaders>
+            <CategoryHeaders>Price</CategoryHeaders>
+            <CategoryHeaders>Total</CategoryHeaders>
+            {Object.keys(myCart).map(cheeseId => {
+              let item = myCart[cheeseId]
+              return(
+              <>
+                <ItemInformation>{item.name}</ItemInformation>
+                <ItemInformation>{item.country}</ItemInformation>
+                <ItemInformation>{item.quantity}</ItemInformation>
+                {item.discount !== undefined && (
+                  <ItemInformation>{item.discount}%</ItemInformation>
+                )}
+                {item.discount === undefined && (
+                  <ItemInformation></ItemInformation>
+                )}
+                <ItemInformation>${item.price}</ItemInformation>
+                <ItemInformation>${item.total}</ItemInformation>
+              </>
+            )})}
+          </CartGrid>
+          <TotalDiv>
+            <TotalText left={'5.5vw'} right={0}>Cart Total</TotalText>
+            <TotalText left={0} right={'5.5vw'}>{cartTotal}</TotalText>
+          </TotalDiv>
+        </MainCheckOutContainer>
         <BottomContainer>
         <StyledButton
           background={'#EE8C1D'}
@@ -163,7 +177,6 @@ const CheckOut = props => {
           smWidth={'130px'}
           onClick={()=> nextPage()}  
         />
-
         </BottomContainer>
       </MainCheeseStoreContainer>
     </>

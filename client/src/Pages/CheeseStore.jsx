@@ -79,20 +79,24 @@ class CheeseStore extends Component {
 
   handleCartUpdate = (cheese) => {
     const { myCart, cartTotal, totalItems } = this.state
-    let newCartTotal = Number(Math.round(100*cartTotal)/100)
+    let newCartTotal = Number(cartTotal)
     let newTotalItems = totalItems + 1
     let discount = cheese.discount
     let price = Number(cheese.price)
     let amountOff = discount ? Number((price/100)*discount) : 0
     let newPrice = Number(Math.round(100*(price - amountOff))/100)
-    newCartTotal += Number(Math.round(100*newPrice)/100)
+    newCartTotal += newPrice 
+    newCartTotal = Number(Math.round(100*newCartTotal + Number.EPSILON)/100)
     if (!myCart[cheese.id]) {
       myCart[cheese.id] = cheese
       myCart[cheese.id].quantity = 1
       myCart[cheese.id].total = newPrice
     } else {
-      myCart[cheese.id].quantity += 1
-      myCart[cheese.id].total += newPrice
+      let newQuantity = myCart[cheese.id].quantity += 1
+      let cheeseTotal = newPrice * newQuantity
+      cheeseTotal = Math.round(100*cheeseTotal + Number.EPSILON) / 100
+      myCart[cheese.id].total = cheeseTotal
+      myCart[cheese.id].quantity = newQuantity   
     }
     this.setState({myCart, cartTotal: newCartTotal, totalItems: newTotalItems })
   }
