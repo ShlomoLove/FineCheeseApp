@@ -22,7 +22,9 @@ const TopLogoContainer = styled.div`
 const MainCheckOutContainer = styled.div`
   display: flex;
   padding-top: 100px;
-  padding-bottom: 75px;  
+  padding-bottom: 75px;
+  flex-direction: column; 
+  width: 100%;  
 `
 
 const StyledLogo = styled.img`
@@ -36,6 +38,7 @@ const CheckoutTitle = styled.h1`
   font-size: 40px;
   color: #211B1B;
   margin-bottom: 6px;
+  text-align: center; 
 
   @media screen and (max-width: 675px) and (min-width: 510px) {
     font-size: 30px; 
@@ -47,35 +50,41 @@ const CheckoutTitle = styled.h1`
 
 const CartGrid = styled.div`
   display: grid; 
-  grid-template-columns: repeat(6, 1fr);
-  width: 96%;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  background: ${props => props.background};
+  border-bottom: ${props => props.border};
+
+  &:hover {
+    background: ${props => props.hover}; 
+  }
 `
 
 const CategoryHeaders = styled.div`
-  text-align: center;
+  text-align: left;
   margin: 6px;
   font-family: 'Cera Pro Bold';
-  font-size: 26px; 
-  color: #211B1B;
+  font-size: 22px; 
+  color: #FACA66;
 
   @media screen and (max-width: 725px) and (min-width: 580px) {
-    font-size: 20px; 
+    font-size: 18px; 
   }
 
   @media (max-width: 580px) {
-    font-size: 3.6vw; 
+    font-size: 3.2vw; 
   }
 `
 
 const ItemInformation = styled.div`
-  text-align: center;
+  text-align: left;
   margin: 6px;
   font-family: 'Cera Pro Regular';
-  font-size: 22px; 
+  font-size: 18px; 
   color: #723503;
 
   @media screen and (max-width: 675px) and (min-width: 510px) {
-    font-size: 15px; 
+    font-size: 14px; 
   }
 
   @media (max-width: 510px) {
@@ -84,11 +93,10 @@ const ItemInformation = styled.div`
 `
 
 const TotalDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-contents: center;
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  align-contents: left;
   width: 100%;
-  flex-direction: row;
   margin-top: 20px;
 `
 
@@ -97,7 +105,7 @@ const TotalText = styled.div`
   margin-left: ${props => props.left}; 
   font-family: 'Cera Pro Bold';
   font-size: 28px;
-  color: #211B1B; 
+  color: #211B1B;  
 
   @media screen and (max-width: 725px) and (min-width: 580px) {
     font-size: 23px; 
@@ -110,7 +118,7 @@ const TotalText = styled.div`
 
 const CheckOut = props => {
   const { cartTotal, myCart, prevPage, nextPage } = props
-  console.log (myCart, "myCart")
+  const quantityArray = [...new Array(10)].map((val, index) => index + 1)
   return (
     <>
       <MainCheeseStoreContainer background={'#E8D7A5'}>
@@ -120,20 +128,26 @@ const CheckOut = props => {
         <MainCheckOutContainer>
 
           <CheckoutTitle>Review Your Cart</CheckoutTitle>
-          <CartGrid>
+          <CartGrid background={'#211B1B'}>
             <CategoryHeaders>Name</CategoryHeaders>
             <CategoryHeaders>Country</CategoryHeaders>
             <CategoryHeaders>Quantity</CategoryHeaders>
             <CategoryHeaders>Discount</CategoryHeaders>
             <CategoryHeaders>Price</CategoryHeaders>
             <CategoryHeaders>Total</CategoryHeaders>
+
+            </CartGrid>
             {Object.keys(myCart).map(cheeseId => {
               let item = myCart[cheeseId]
               return(
-              <>
+              <CartGrid background={'#E8D7A5'} border={'1px solid #EFEFF4'} hover={'rgba(250, 202, 102, .2)'}>
                 <ItemInformation>{item.name}</ItemInformation>
                 <ItemInformation>{item.country}</ItemInformation>
-                <ItemInformation>{item.quantity}</ItemInformation>
+                <select value={item.quantity}>
+                  {quantityArray.map(val =>(
+                    <option value={val}>{val}</option>
+                  ))}
+                </select>
                 {item.discount !== undefined && (
                   <ItemInformation>{item.discount}%</ItemInformation>
                 )}
@@ -142,12 +156,11 @@ const CheckOut = props => {
                 )}
                 <ItemInformation>${item.price}</ItemInformation>
                 <ItemInformation>${item.total}</ItemInformation>
-              </>
+              </CartGrid>
             )})}
-          </CartGrid>
           <TotalDiv>
-            <TotalText left={'5.5vw'} right={0}>Cart Total</TotalText>
-            <TotalText left={0} right={'5.5vw'}>{cartTotal}</TotalText>
+            <TotalText left={'20px'} right={0}>Cart Total</TotalText>
+            <TotalText left={0} right={'20px'}>${cartTotal}</TotalText>
           </TotalDiv>
         </MainCheckOutContainer>
         <BottomContainer>
