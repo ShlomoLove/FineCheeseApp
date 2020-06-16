@@ -116,6 +116,41 @@ const TotalText = styled.div`
   }
 `
 
+const StyledSelect = styled.select`
+  background: #FACA66;
+  width: 90%;
+  font-family: 'Cera Pro Regular';
+  font-size: 20px; 
+  line-height: 1.5; 
+  text-align: center;
+  color: #723503;
+
+  @media screen and (max-width: 675px) and (min-width: 510px) {
+    font-size: 14px; 
+  }
+
+  @media (max-width: 510px) {
+    font-size: 3.3vw; 
+  }
+`
+
+const StyledOption = styled.option`
+  text-align: center; 
+  color: #723503;
+  background: #FACA66;
+  font-family: 'Cera Pro Regular'; 
+  font-size: 20px; 
+
+  @media screen and (max-width: 675px) and (min-width: 510px) {
+    font-size: 14px; 
+  }
+
+  @media (max-width: 510px) {
+    font-size: 3.3vw; 
+  }
+`
+
+
 const CheckOut = props => {
   const { cartTotal, myCart, prevPage, nextPage } = props
   const quantityArray = [...new Array(10)].map((val, index) => index + 1)
@@ -143,11 +178,11 @@ const CheckOut = props => {
               <CartGrid background={'#E8D7A5'} border={'1px solid #EFEFF4'} hover={'rgba(250, 202, 102, .2)'}>
                 <ItemInformation>{item.name}</ItemInformation>
                 <ItemInformation>{item.country}</ItemInformation>
-                <select value={item.quantity}>
+                <StyledSelect  value={item.quantity}>
                   {quantityArray.map(val =>(
-                    <option value={val}>{val}</option>
+                    <StyledOption value={val}>{val}</StyledOption>
                   ))}
-                </select>
+                </StyledSelect>
                 {item.discount !== undefined && (
                   <ItemInformation>{item.discount}%</ItemInformation>
                 )}
