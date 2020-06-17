@@ -152,7 +152,7 @@ const StyledOption = styled.option`
 
 
 const CheckOut = props => {
-  const { cartTotal, myCart, prevPage, nextPage } = props
+  const { cartTotal, myCart, prevPage, nextPage, handleCartUpdate } = props
   const quantityArray = [...new Array(10)].map((val, index) => index + 1)
   return (
     <>
@@ -178,7 +178,10 @@ const CheckOut = props => {
               <CartGrid background={'#E8D7A5'} border={'1px solid #EFEFF4'} hover={'rgba(250, 202, 102, .2)'}>
                 <ItemInformation>{item.name}</ItemInformation>
                 <ItemInformation>{item.country}</ItemInformation>
-                <StyledSelect  value={item.quantity}>
+                <StyledSelect  
+                  value={item.quantity}
+                  onChange={(e)=> handleCartUpdate(item, e.target.value)}
+                >
                   {quantityArray.map(val =>(
                     <StyledOption value={val}>{val}</StyledOption>
                   ))}
