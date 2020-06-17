@@ -84,7 +84,7 @@ class CheeseStore extends Component {
     if (!quantity) {
       newQuantity = myCart[cheese.id] ? (myCart[cheese.id].quantity + 1) : 1
     } else {
-      newQuantity = quantity
+      newQuantity = Number(quantity)
     }
     newCheese.quantity = newQuantity
     newCheese.total = this.getCheeseTotal(newCheese)
@@ -104,6 +104,13 @@ class CheeseStore extends Component {
     return cheeseTotal
   }
 
+  removeCheese = (id) => {
+    const { myCart } = this.state
+    delete myCart[id]
+    let newCartTotal = this.getTotal(myCart, 'total')
+    let newTotalItems = this.getTotal(myCart, 'quantity')
+    this.setState({myCart, cartTotal: newCartTotal, totalItems: newTotalItems })
+  }
   getTotal = (cartObject, value) => {
     let output = 0
     Object.keys(cartObject).map(cheeseID => {
@@ -112,6 +119,7 @@ class CheeseStore extends Component {
     if(value === 'total') {
       output = Number(Math.round(100*output + Number.EPSILON)/100)
     }
+    console.log (output, typeof output, "QUANTITY")
     return output
   }
 
@@ -259,10 +267,14 @@ class CheeseStore extends Component {
               prevPage={this.prevPage}
               nextPage={this.nextPage}
               handleCartUpdate={this.handleCartUpdate}
+              removeCheese={this.removeCheese}
             />
           )}
           {page === 4 && (
-            <Confirm />
+            <Confirm 
+              myCart={myCart}
+              cartTotal={cartTotal}
+            />
           )}
         </OuterContainer>
       </>

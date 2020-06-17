@@ -4,7 +4,6 @@ import StyledButton from './StyledButton'
 import FrankLogo from '../../Assets/FFC_logo_2_dark.png'
 import BottomContainer from './BottomContainer'
 
-
 const LogoContainer = styled.div `
   display: flex;
   justify-content: center;
