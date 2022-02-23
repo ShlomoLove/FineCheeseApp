@@ -1,9 +1,11 @@
 const mongoose = require ('mongoose')
+require('dotenv').config()
 
-mongoose.connect('mongodb://127.0.0.1:27017/FranksFineCheeses', {
+mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
+.catch(error => console.error('error connecting to the mongo database:', error));
 
 const db = mongoose.connection
 

@@ -53,7 +53,7 @@ const Confirm = props => {
             <ItemInformation>${item.total}</ItemInformation>
           </CartGrid>
         )})}
-         <TotalDiv>
+          <TotalDiv>
             <TotalText color={'#EE8C1D'} left={'22px'} right={0}>Order Total</TotalText>
             <TotalText color={'#EE8C1D'} left={0} right={'22px'}>${cartTotal}</TotalText>
           </TotalDiv>
