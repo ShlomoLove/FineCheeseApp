@@ -31,7 +31,7 @@ class CheeseStore extends Component {
     let countryObject = {}
     let cheeseObject = {}
     axios
-    .get('http://34.219.13.24:9000/cheeses/')
+    .get('/cheeses/')
     .then(({data}) => {
       for (let cheese of data) {
         if (cheese.country && !countryObject[cheese.country]) {
@@ -162,7 +162,7 @@ class CheeseStore extends Component {
 
   getSpecials = (zip) => {
     axios
-    .get(`http://34.219.13.24:9000/specials/${zip}`)
+    .get(`/specials/${zip}`)
     .then(({data}) => {
       if (data.length === 0) {
         this.setState({alertMessage: 'errorResponse'})
@@ -179,7 +179,7 @@ class CheeseStore extends Component {
       return cheese.cheeseID
     })
     axios
-    .all(idArray.map(cheeseID => axios.get(`http://34.219.13.24:9000/cheeses/${cheeseID}`)))
+    .all(idArray.map(cheeseID => axios.get(`/cheeses/${cheeseID}`)))
     .then(responses => {
       const cheeseArray = responses.map(response => {
         return response.data[0]
